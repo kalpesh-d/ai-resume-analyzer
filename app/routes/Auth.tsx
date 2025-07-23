@@ -1,6 +1,6 @@
+import { usePuterStore } from "~/lib/puter";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { usePuterStore } from "~/lib/puter";
 
 export const meta = () => [
   { title: "Resumind | Auth" },
@@ -14,9 +14,7 @@ const Auth = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (auth.isAuthenticated) {
-      navigate(next);
-    }
+    if (auth.isAuthenticated) navigate(next);
   }, [auth.isAuthenticated, next]);
 
   return (
@@ -25,19 +23,18 @@ const Auth = () => {
         <section className="flex flex-col gap-8 bg-white rounded-2xl p-10">
           <div className="flex flex-col items-center gap-2 text-center">
             <h1>Welcome</h1>
-            <h2>Log In to continue Your Job Journey</h2>
+            <h2>Log In to Continue Your Job Journey</h2>
           </div>
-
           <div>
             {isLoading ? (
               <button className="auth-button animate-pulse">
-                <p>Signin you in...</p>
+                <p>Signing you in...</p>
               </button>
             ) : (
               <>
                 {auth.isAuthenticated ? (
                   <button className="auth-button" onClick={auth.signOut}>
-                    <p>Log out</p>
+                    <p>Log Out</p>
                   </button>
                 ) : (
                   <button className="auth-button" onClick={auth.signIn}>
